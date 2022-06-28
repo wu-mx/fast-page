@@ -3,6 +3,16 @@ const core = require('./core');
 const fs = require('fs');
 const chalk = require("chalk");
 
+//装逼用的计时器
+class Timer{
+    constructor() {
+        this.now = Date.now();
+    }
+    get(){
+        return Date.now() - this.now
+    }
+}
+
 //args 可对照Readme.md看
 program
 .option('-c,--config <path>', 'Path to config file')
@@ -29,11 +39,13 @@ if(!options.config && !options.templete){
     process.exit(1);
 }else{
     try{
+        let timer = new Timer();
         //读取配置文件
         let configFile = require(options.config);
         //渲染完毕直接输出
-        console.log(chalk.greenBright('Render finished.'));
         fs.writeFileSync('result.html',core.render(options.templete,configFile));
+        //开始装逼
+        console.log(chalk.greenBright(`Render finished in ${timer.get()/1000}s`));
     }catch (e) {
         console.log(chalk.red('Config file is not valid'));
         process.exit(1);
