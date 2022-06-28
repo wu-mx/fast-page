@@ -3,10 +3,12 @@ const core = require('./core');
 const fs = require('fs');
 const chalk = require("chalk");
 
+//args 可对照Readme.md看
 program
 .option('-c,--config <path>', 'Path to config file')
 .option('-t --templete <path>', 'Path to template file')
 
+//解析一下
 program.parse(process.argv);
 
 let options = program.opts();
@@ -27,10 +29,13 @@ if(!options.config && !options.templete){
     process.exit(1);
 }else{
     try{
+        //读取配置文件
         let configFile = require(options.config);
+        //渲染完毕直接输出
+        console.log(chalk.greenBright('Render finished.'));
         fs.writeFileSync('result.html',core.render(options.templete,configFile));
     }catch (e) {
-        console.log('Config file is not valid');
+        console.log(chalk.red('Config file is not valid'));
         process.exit(1);
     }
 
