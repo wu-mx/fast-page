@@ -1,0 +1,25 @@
+{
+  "name": "fast-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "core": "node core",
+    "test": "node index -c ./config.js -t index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waterflames-team/fast-page.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/waterflames-team/fast-page/issues"
+  },
+  "homepage": "https://github.com/waterflames-team/fast-page#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.3.0",
+    "markdown-it": "^13.0.1"
+  }
+}
